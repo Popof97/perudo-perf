@@ -14,8 +14,8 @@
     .hero { background:var(--green-dark); color:#fff; border-radius:28px; padding:30px; position:relative; overflow:hidden; min-height:205px; } .hero:after { content:""; position:absolute; width:250px; height:250px; border:34px dotted #ffffff15; border-radius:50%; right:-80px; top:-130px; } .hero h2 { font-size:31px; margin:0 0 8px; letter-spacing:-1px; max-width:590px; position:relative; z-index:1; } .hero p { color:#cae4d8; max-width:530px; margin:0; line-height:1.5; position:relative; z-index:1; } .hero strong { color:#ffd675; } .hero-badge { position:absolute; z-index:1; width:220px; right:20px; bottom:-73px; transform:rotate(5deg); border:5px solid #f4d078; border-radius:22px; box-shadow:0 14px 30px #001d16a8; }
     .summary { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:18px 0; }.metric { background:var(--cream); border:1px solid var(--line); padding:16px; border-radius:18px; }.metric b { display:block; font-size:23px; }.metric span { color:var(--muted); font-size:13px; }
     .section-head { display:flex; justify-content:space-between; align-items:end; margin:29px 0 12px; gap:12px; } h3 { margin:0; font-size:20px; } .sub { margin:3px 0 0; color:var(--muted); font-size:13px; }.button { background:var(--green); color:#fff; padding:12px 15px; border-radius:13px; font-weight:800; box-shadow:0 3px 0 var(--green-dark); }.button.alt { background:var(--gold); color:#482d00; box-shadow:0 3px 0 #ba851d; }.button:active { transform:translateY(2px); box-shadow:none; }
-    .ranking { display:grid; gap:10px; }.player { display:grid; grid-template-columns:46px 1fr auto; gap:13px; align-items:center; background:var(--cream); border:1px solid var(--line); padding:13px 16px; border-radius:19px; }.player.clickable { cursor:pointer; transition:transform .15s, box-shadow .15s; }.player.clickable:hover { transform:translateY(-2px); box-shadow:0 8px 18px #6e614523; }.place-wrap { display:grid; justify-items:center; gap:3px; }.place { display:grid; place-items:center; width:38px; height:38px; background:#e5dcc8; border-radius:12px; font-weight:900; }.rank-trend { font-size:11px; font-weight:900; white-space:nowrap; }.rank-trend.up,.score-trend.up { color:#118653; }.rank-trend.down,.score-trend.down { color:#c64b3e; }.rank-trend.flat,.score-trend.flat { color:var(--muted); }.player:nth-child(1) .place { background:var(--gold); }.player:nth-child(2) .place { background:#cfd6d5; }.player:nth-child(3) .place { background:#df9d68; }.player-name { font-size:16px; font-weight:900; }.player-meta { color:var(--muted); font-size:13px; margin-top:3px; }.perf { text-align:right; }.perf b { font-size:25px; }.perf small { display:block; color:var(--muted); font-weight:700; }.score-trend { font-size:11px; font-weight:900; margin-top:2px; }
-    .stat-switch { display:flex; gap:7px; background:#e5dcc8; padding:5px; border-radius:14px; }.stat-switch button { padding:8px 11px; border-radius:10px; background:transparent; color:var(--muted); font-weight:900; }.stat-switch button.active { background:var(--cream); color:var(--green-dark); box-shadow:0 2px 6px #6e61452b; }.stat-list { display:grid; gap:9px; }.stat-row { display:grid; grid-template-columns:minmax(115px,1.4fr) repeat(5,minmax(54px,.7fr)); gap:8px; align-items:center; padding:13px 15px; background:var(--cream); border:1px solid var(--line); border-radius:17px; cursor:pointer; }.stat-row:hover { border-color:#b6a98f; }.stat-row b { display:block; }.stat-row span { display:block; font-size:12px; color:var(--muted); }.stat-number { text-align:center; font-weight:900; font-size:18px; }.stat-number small { display:block; font-size:10px; font-weight:700; color:var(--muted); }.personal-columns { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px; }.personal-card { background:#fffdf7; border:1px solid var(--line); border-radius:17px; padding:15px; }.personal-card h4 { margin:0 0 12px; font-size:14px; }.personal-card dl { margin:0; display:grid; grid-template-columns:1fr auto; gap:9px; }.personal-card dt { color:var(--muted); }.personal-card dd { margin:0; font-weight:900; }
+    .ranking { display:grid; gap:10px; }.player { display:grid; grid-template-columns:46px 1fr auto; gap:13px; align-items:center; background:var(--cream); border:1px solid var(--line); padding:13px 16px; border-radius:19px; }.player.clickable { cursor:pointer; transition:transform .15s, box-shadow .15s; }.player.clickable:hover { transform:translateY(-2px); box-shadow:0 8px 18px #6e614523; }.place-wrap { display:grid; justify-items:center; gap:3px; }.place { display:grid; place-items:center; width:38px; height:38px; background:#e5dcc8; border-radius:12px; font-weight:900; }.rank-trend { font-size:11px; font-weight:900; white-space:nowrap; }.rank-trend.up,.score-trend.up { color:#118653; }.rank-trend.down,.score-trend.down { color:#c64b3e; }.rank-trend.flat,.score-trend.flat { color:var(--muted); }.player:nth-child(1) .place { background:var(--gold); }.player:nth-child(2) .place { background:#cfd6d5; }.player:nth-child(3) .place { background:#df9d68; }.player-name { font-size:16px; font-weight:900; }.player-meta { color:var(--muted); font-size:13px; margin-top:3px; }.player-comment { color:#467061; font-size:12px; font-style:italic; margin-top:5px; line-height:1.25; }.perf { text-align:right; }.perf b { font-size:25px; }.perf small { display:block; color:var(--muted); font-weight:700; }.score-trend { font-size:11px; font-weight:900; margin-top:2px; }
+    .stat-switch { display:flex; gap:7px; background:#e5dcc8; padding:5px; border-radius:14px; }.stat-switch button { padding:8px 11px; border-radius:10px; background:transparent; color:var(--muted); font-weight:900; }.stat-switch button.active { background:var(--cream); color:var(--green-dark); box-shadow:0 2px 6px #6e61452b; }.stat-list { display:grid; gap:9px; }.stat-row { display:grid; grid-template-columns:minmax(115px,1.4fr) repeat(5,minmax(54px,.7fr)); gap:8px; align-items:center; padding:13px 15px; background:var(--cream); border:1px solid var(--line); border-radius:17px; cursor:pointer; }.stat-row:hover { border-color:#b6a98f; }.stat-row b { display:block; }.stat-row span { display:block; font-size:12px; color:var(--muted); }.stat-number { text-align:center; font-weight:900; font-size:18px; }.stat-number small { display:block; font-size:10px; font-weight:700; color:var(--muted); }.profile-hero { margin:-23px -23px 0; padding:24px 23px 21px; color:#fff; background:radial-gradient(circle at 88% 12%,#e8b749 0 6%,transparent 7%),linear-gradient(135deg,#0b4033,#176b54); border-radius:25px 25px 20px 20px; position:relative; overflow:hidden; }.profile-hero .close { position:absolute; z-index:3; right:16px; top:16px; background:#ffffff22; color:#fff; }.profile-hero:after { content:""; position:absolute; width:160px; height:160px; border:20px dotted #ffffff18; border-radius:50%; right:-66px; bottom:-86px; }.profile-head { display:flex; align-items:center; gap:13px; position:relative; z-index:1; }.profile-avatar { width:58px; height:58px; display:grid; place-items:center; border-radius:19px; background:#fff8e5; color:#10251f; font-size:30px; box-shadow:4px 4px 0 #082b22; }.profile-name { font-size:25px; font-weight:900; letter-spacing:-.7px; }.profile-label { color:#cde7db; font-size:13px; margin-top:2px; }.profile-comment { position:relative; z-index:1; color:#fff3c7; font-size:13px; line-height:1.35; margin:14px 0 0; font-style:italic; }.profile-perf { position:relative; z-index:1; display:flex; align-items:end; gap:10px; margin-top:20px; }.profile-perf b { font-size:42px; line-height:.9; }.profile-perf span { color:#d1e7dd; font-size:12px; font-weight:800; padding-bottom:4px; }.profile-quick { position:relative; z-index:1; display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-top:18px; }.quick-stat { background:#ffffff18; border:1px solid #ffffff22; padding:9px; border-radius:12px; text-align:center; }.quick-stat b { display:block; font-size:18px; }.quick-stat span { color:#d4eadd; font-size:10px; font-weight:700; }.personal-columns { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:16px; }.personal-card { background:#fffdf7; border:1px solid var(--line); border-radius:17px; padding:15px; }.personal-card h4 { margin:0 0 12px; font-size:14px; color:#176b54; }.personal-card dl { margin:0; display:grid; grid-template-columns:1fr auto; gap:9px; }.personal-card dt { color:var(--muted); }.personal-card dd { margin:0; font-weight:900; }
     .notice,.empty { background:#fff4d5; border:1px solid #efd99d; padding:14px 16px; border-radius:15px; color:#775616; line-height:1.45; }.empty { color:var(--muted); background:var(--cream); border-color:var(--line); text-align:center; padding:30px; }
     .games { display:grid; gap:9px; }.game { padding:14px 16px; background:var(--cream); border:1px solid var(--line); border-radius:16px; display:flex; justify-content:space-between; gap:15px; align-items:center; }.game b { display:block; }.game span { color:var(--muted); font-size:13px; }.tag { background:#dbf0e6; color:#176b54; border-radius:999px; padding:5px 9px; font-size:12px; font-weight:900; white-space:nowrap; }
     .hidden { display:none!important; }.panel { background:var(--cream); border:1px solid var(--line); border-radius:22px; padding:20px; }.toolbar { display:flex; gap:9px; flex-wrap:wrap; }.tool { padding:10px 12px; background:#e7dfcf; color:var(--ink); border-radius:12px; font-weight:800; }.tool.danger { color:#a6382b; background:#ffe1dc; }
@@ -79,7 +79,150 @@
   function standingsFor(season,games){ return sortedPlayers({...season,games}).filter(p=>p.games>=5); }
   function latestGame(season){ return [...season.games].sort((a,b)=>new Date(b.date)-new Date(a.date))[0]; }
   function evolutionFor(player){ const season=activeSeason(),latest=latestGame(season);if(!latest)return null;const previousGames=season.games.filter(g=>g.id!==latest.id);const current=standingsFor(season,season.games),previous=standingsFor(season,previousGames);const currentPlace=current.findIndex(p=>p.id===player.id);const oldPlace=previous.findIndex(p=>p.id===player.id);const oldScore=performance(player,{...season,games:previousGames}).score;return {rankMove:oldPlace<0?null:oldPlace-currentPlace,scoreMove:player.score-oldScore,playedLatest:latest.ranks.includes(player.id)}; }
-  function playerHtml(p,place){ const trend=evolutionFor(p);const rankLabel=!trend?'':trend.rankMove===null?'Nouveau':trend.rankMove>0?`▲ ${trend.rankMove}`:trend.rankMove<0?`▼ ${Math.abs(trend.rankMove)}`:'—';const rankClass=!trend?'flat':trend.rankMove===null?'up':trend.rankMove>0?'up':trend.rankMove<0?'down':'flat';const scoreLabel=!trend?'':`${trend.scoreMove>0?'+':''}${trend.scoreMove.toFixed(1)} après la dernière partie`;const scoreClass=!trend?'flat':trend.scoreMove>0?'up':trend.scoreMove<0?'down':'flat';return `<article class="player clickable" onclick="openPlayerStats('${p.id}')"><div class="place-wrap"><div class="place">${place}</div>${trend?`<span class="rank-trend ${rankClass}">${rankLabel}</span>`:''}</div><div><div class="player-name">${esc(p.avatar||'🎲')} ${esc(p.name)}</div><div class="player-meta">${p.games} partie${p.games>1?'s':''}${p.games<5?` · encore ${5-p.games} pour être classé`:''}</div></div><div class="perf"><b>${p.score.toFixed(1)}</b><small>PERF / 100</small>${trend?`<div class="score-trend ${scoreClass}">${scoreLabel}</div>`:''}</div></article>`; }
+  function recentPlayerGames(id,limit=5){return [...activeSeason().games].sort((a,b)=>new Date(b.date)-new Date(a.date)).filter(g=>g.ranks.includes(id)).slice(0,limit);}
+  function pickComment(list,key){let total=0;for(const char of String(key))total=(total*31+char.charCodeAt(0))>>>0;return list[total%list.length];}
+  function playerComment(id){
+    const player=allPlayers().find(p=>p.id===id),name=(player?.name||'').toLocaleLowerCase('fr');
+    const recent=recentPlayerGames(id),key=`${id}-${recent.map(g=>g.id).join('-')}`;
+    const christophe=[
+      'Christophe reste le patron : les dés n’ont pas encore reçu le mémo.',
+      'Même sans victoire, Christophe joue manifestement à un niveau conceptuel.',
+      'Christophe ne perd pas : il laisse les autres raconter leur exploit.',
+      'La table confirme que Christophe est toujours la référence officielle.',
+      'Un résultat discret, mais Christophe garde la main sur la légende.',
+      'Christophe expérimente des stratégies que les mortels ne comprennent pas encore.',
+      'La performance du jour importe peu : Christophe reste le classement moral à lui seul.',
+      'Christophe a laissé une chance aux autres. Geste élégant, évidemment.',
+      'Les dés ont hésité, puis se sont souvenus qui était Christophe.',
+      'Pas besoin de médaille : Christophe est déjà le trophée.'
+    ];
+    const alexandre=[
+      'Alexandre poursuit vaillamment sa quête du classement… par le bas.',
+      'Alexandre travaille la régularité, dans une direction très personnelle.',
+      'Une performance qui prouve qu’Alexandre n’a peur d’aucun défi, surtout du dernier.',
+      'Alexandre laisse généreusement les sommets aux autres joueurs.',
+      'Le gobelet d’Alexandre a demandé un débriefing après cette soirée.',
+      'Alexandre joue un Perudo très audacieux : personne ne sait où cela mène.',
+      'Les dés d’Alexandre sont encore en période d’essai.',
+      'Alexandre entretient le suspense : impossible de savoir ce qui arrivera, sauf peut-être le pire.',
+      'Une prestation pleine de mystère. Alexandre aussi cherche encore l’explication.',
+      'Alexandre est le héros discret de la soirée : très discret dans le classement.'
+    ];
+    if(name==='christophe')return pickComment(christophe,key);
+    if(name==='alexandre')return pickComment(alexandre,key);
+    if(!recent.length)return pickComment([
+      'Encore caché derrière son gobelet, mais prêt à surprendre la table.',
+      'Pas assez de traces pour le moment : le mystère reste entier.',
+      'Le calme avant le bluff. La table ferait bien de se méfier.',
+      'Aucune partie récente : les dés attendent leur heure.',
+      'Profil discret, potentiel de chaos encore inconnu.',
+      'En embuscade. Personne ne sait si c’est prudent ou inquiétant.'
+    ],key);
+    const position=g=>g.ranks.indexOf(id),winner=g=>position(g)===0,last=g=>position(g)===g.ranks.length-1;
+    const latest=recent[0];let winStreak=0,lastStreak=0;for(const game of recent){if(winner(game))winStreak++;else break;}for(const game of recent){if(last(game))lastStreak++;else break;}
+    if(winner(latest)&&latest.perfectWin)return pickComment([
+      'Vol parfait ! Les dés ont probablement signé un contrat secret.',
+      'Cinq dés au bout : performance officiellement classée dangereuse.',
+      'Vol parfait validé. La table réclame une enquête, les dés refusent de parler.',
+      'Un vol parfait, rien que ça. La modestie a quitté la salle.',
+      'Les cinq dés sont là. Les autres joueurs cherchent encore leurs excuses.',
+      'Vol parfait : ce n’est plus une victoire, c’est une déclaration.',
+      'Le gobelet a livré une démonstration de force assez peu polie.',
+      'Cinq dés conservés : la soirée vient de changer de propriétaire.'
+    ],key);
+    if(winStreak>=3)return pickComment([
+      `${winStreak} victoires de suite… on commence à inspecter les dés.`,
+      `${winStreak} fois de suite au sommet : la table demande une pause.`,
+      `Série de ${winStreak} victoires. Les adversaires envisagent de changer de jeu.`,
+      `${winStreak} succès d’affilée : confiance maximale, prudence minimale.`,
+      `Encore une victoire. La légende prend un peu trop ses aises.`,
+      `${winStreak} victoires : même le gobelet a l’air impressionné.`,
+      `Une série qui dure. Les dés sont visiblement de bonne compagnie.`,
+      `Trois victoires ou plus : le mode boss final est activé.`
+    ],key);
+    if(winStreak===2)return pickComment([
+      'Deux victoires de suite : la confiance commence à faire du bruit.',
+      'Doublé gagnant. Le sourire devient difficile à cacher.',
+      'Deux tables, deux victoires : quelqu’un se sent pousser des ailes.',
+      'La série démarre. Les autres ont été prévenus.',
+      'Deux succès d’affilée : le bluff est en pleine forme.',
+      'Le gobelet est chaud. Vraiment chaud.',
+      'Deux victoires de suite, et déjà des regards suspects autour de la table.',
+      'Une belle série : les dés ont pris un abonnement.'
+    ],key);
+    if(lastStreak>=2)return pickComment([
+      'Deux dernières places ou plus… le gobelet demande une pause.',
+      'La série noire continue, mais les excuses gagnent en qualité.',
+      'Encore dernier : il faut peut-être négocier avec les dés.',
+      'Les dés testent la patience. Beaucoup de patience.',
+      'Une régularité admirable, même si personne ne l’avait demandée.',
+      'Le tapis connaît bien ce joueur en ce moment.',
+      'Deux fins de tableau : la remontée n’en sera que plus belle.',
+      'Le classement du bas est parfaitement maîtrisé.'
+    ],key);
+    const hasWin=recent.some(winner),hasLast=recent.some(last);
+    if(recent.length>=3&&hasWin&&hasLast)return pickComment([
+      'Mode yoyo activé : du sommet au tapis, sans escale.',
+      'Impossible de prévoir la prochaine place : c’est du Perudo acrobatique.',
+      'Un coup roi, un coup dernier. La montagne russe est ouverte.',
+      'La régularité ? Pas vraiment. Le spectacle ? Absolument.',
+      'Le classement fait des loopings dès que ce joueur s’assoit.',
+      'Une forme en zigzag, mais quel beau zigzag.',
+      'Les dés alternent entre standing ovation et fou rire.',
+      'Le yoyo est officiellement devenu une discipline de haut niveau.'
+    ],key);
+    if(winner(latest))return pickComment([
+      'La dernière table lui appartient. Les autres prennent des notes.',
+      'Victoire nette : le gobelet peut rentrer fier à la maison.',
+      'Premier aujourd’hui, donc forcément très calme et très humble.',
+      'La dernière partie a trouvé son patron.',
+      'Victoire au compteur. Les excuses adverses sont en préparation.',
+      'Un succès qui donne envie de rejouer tout de suite.',
+      'La table s’incline, les dés applaudissent discrètement.',
+      'Une victoire propre. Enfin, aussi propre que le Perudo le permet.'
+    ],key);
+    if(last(latest))return pickComment([
+      'Dernière partie difficile… mais les dés ont une mémoire courte.',
+      'La soirée n’a pas choisi son camp, cette fois.',
+      'Dernier, mais avec une excellente histoire à raconter.',
+      'Un résultat à oublier vite. Heureusement, la revanche arrive toujours.',
+      'Les dés ont été formels : pas aujourd’hui.',
+      'Fin de tableau, début d’une future légende. Peut-être.',
+      'Une manche rude, mais le gobelet n’a pas dit son dernier mot.',
+      'Dernier pour l’instant : la remontada n’attend que son heure.'
+    ],key);
+    if(position(latest)===1)return pickComment([
+      'Toujours à deux doigts du trône. Ça sent la revanche.',
+      'Deuxième : juste assez près pour entendre le vainqueur respirer.',
+      'Une médaille d’argent, et un plan déjà prêt pour la prochaine fois.',
+      'Presque premier. Le mot presque peut être très long.',
+      'Belle deuxième place : la couronne n’était vraiment pas loin.',
+      'Une place d’honneur, avec les crocs bien sortis.',
+      'Le podium est validé. La marche d’au-dessus est dans le viseur.'
+    ],key);
+    const topHalf=recent.filter(g=>position(g)<g.ranks.length/2).length;
+    if(recent.length>=3&&topHalf>=3)return pickComment([
+      'Une régularité suspecte. Les dés livrent peut-être des indices.',
+      'Toujours bien placé : la table commence à prendre cela au sérieux.',
+      'La forme est solide, sans avoir besoin de faire de bruit.',
+      'Un vrai métronome du Perudo. Mais avec un gobelet.',
+      'Les bonnes places s’accumulent. La confiance aussi.',
+      'Régulier, discret, dangereux : le pire mélange possible.',
+      'La constance fait son œuvre. Les autres le savent maintenant.',
+      'Une forme de champion tranquille, très tranquillement inquiétante.'
+    ],key);
+    return pickComment([
+      'Dans le rythme, sans faire trop de bruit. Méfiance.',
+      'Une partie correcte, et probablement déjà un nouveau plan en tête.',
+      'Ni héros ni victime : juste assez dangereux pour la prochaine manche.',
+      'Le classement bouge doucement, mais les dés peuvent tout changer.',
+      'Une soirée de travail propre. Le bluff reste affûté.',
+      'Position stable, regard suspect : la suite promet.',
+      'Pas de drame, pas de triomphe : le Perudo dans toute sa finesse.',
+      'La partie suivante décidera si c’était un échauffement ou un avertissement.'
+    ],key);
+  }
+  function playerHtml(p,place){ const trend=evolutionFor(p);const rankLabel=!trend?'':trend.rankMove===null?'Nouveau':trend.rankMove>0?`▲ ${trend.rankMove}`:trend.rankMove<0?`▼ ${Math.abs(trend.rankMove)}`:'—';const rankClass=!trend?'flat':trend.rankMove===null?'up':trend.rankMove>0?'up':trend.rankMove<0?'down':'flat';const scoreLabel=!trend?'':`${trend.scoreMove>0?'+':''}${trend.scoreMove.toFixed(1)} après la dernière partie`;const scoreClass=!trend?'flat':trend.scoreMove>0?'up':trend.scoreMove<0?'down':'flat';return `<article class="player clickable" onclick="openPlayerStats('${p.id}')"><div class="place-wrap"><div class="place">${place}</div>${trend?`<span class="rank-trend ${rankClass}">${rankLabel}</span>`:''}</div><div><div class="player-name">${esc(p.avatar||'🎲')} ${esc(p.name)}</div><div class="player-meta">${p.games} partie${p.games>1?'s':''}${p.games<5?` · encore ${5-p.games} pour être classé`:''}</div><div class="player-comment">${esc(playerComment(p.id))}</div></div><div class="perf"><b>${p.score.toFixed(1)}</b><small>PERF / 100</small>${trend?`<div class="score-trend ${scoreClass}">${scoreLabel}</div>`:''}</div></article>`; }
   function allGames(){ return data.seasons.flatMap(s=>s.games); }
   function allPlayers(){ const known=new Map();data.seasons.forEach(s=>s.players.forEach(p=>known.set(p.id,p)));return [...known.values()]; }
   function playerStats(id,games){ const played=games.filter(g=>g.ranks.includes(id));const wins=played.filter(g=>g.ranks.indexOf(id)===0).length;const seconds=played.filter(g=>g.ranks.indexOf(id)===1).length;const lasts=played.filter(g=>g.ranks.indexOf(id)===g.ranks.length-1).length;const perfects=played.filter(g=>g.perfectWin&&g.ranks.indexOf(id)===0).length;return {games:played.length,wins,seconds,lasts,perfects,winRate:played.length?wins/played.length*100:0}; }
@@ -87,7 +230,7 @@
   function statsHtml(){ const scopeGames=statsScope==='season'?activeSeason().games:allGames();const players=statsScope==='season'?activeSeason().players:allPlayers();const rows=players.map(p=>({...p,...playerStats(p.id,scopeGames)})).sort((a,b)=>b.wins-a.wins||b.winRate-a.winRate||b.games-a.games);return `<div class="section-head"><div><h3>Statistiques</h3><p class="sub">Clique sur un joueur pour ouvrir sa fiche personnelle.</p></div><div class="stat-switch"><button class="${statsScope==='season'?'active':''}" onclick="setStatsScope('season')">Cette saison</button><button class="${statsScope==='lifetime'?'active':''}" onclick="setStatsScope('lifetime')">À vie</button></div></div>${rows.length?`<div class="stat-list">${rows.map(p=>`<article class="stat-row" onclick="openPlayerStats('${p.id}')"><div><b>${esc(p.avatar||'🎲')} ${esc(p.name)}</b><span>${p.games} partie${p.games>1?'s':''}</span></div>${statNumber(p.wins,'victoires')}${statNumber(p.seconds,'2e places')}${statNumber(p.lasts,'dernières')}${statNumber(p.perfects,'🎯 parfaits')}${statNumber(p.winRate.toFixed(0)+'%','de victoires')}</article>`).join('')}</div>`:`<div class="empty">Pas encore de statistiques : ajoute une partie pour commencer.</div>`}`; }
   function setStatsScope(scope){statsScope=scope;render();}
   function personalCard(title,stats){return `<div class="personal-card"><h4>${title}</h4><dl><dt>Parties jouées</dt><dd>${stats.games}</dd><dt>Victoires</dt><dd>${stats.wins}</dd><dt>Deuxièmes places</dt><dd>${stats.seconds}</dd><dt>Dernières places</dt><dd>${stats.lasts}</dd><dt>🎯 Vols parfaits</dt><dd>${stats.perfects}</dd><dt>Pourcentage de victoires</dt><dd>${stats.winRate.toFixed(1)}%</dd></dl></div>`;}
-  function openPlayerStats(id){const p=allPlayers().find(x=>x.id===id);if(!p)return;showModal(`<div class="modal-head"><div><h3>${esc(p.avatar||'🎲')} ${esc(p.name)}</h3><p class="sub">Sa fiche Perudo Master.</p></div><button class="close" onclick="closeModal()">×</button></div><div class="personal-columns">${personalCard('Cette saison',playerStats(id,activeSeason().games))}${personalCard('Toute l’histoire',playerStats(id,allGames()))}</div>`);}
+  function openPlayerStats(id){const p=allPlayers().find(x=>x.id===id);if(!p)return;const seasonStats=playerStats(id,activeSeason().games),lifeStats=playerStats(id,allGames()),perf=performance(p,activeSeason()).score;showModal(`<div class="profile-hero"><button class="close" onclick="closeModal()">×</button><div class="profile-head"><div class="profile-avatar">${esc(p.avatar||'🎲')}</div><div><div class="profile-name">${esc(p.name)}</div><div class="profile-label">Fiche joueur · Perudo Master</div></div></div><p class="profile-comment">${esc(playerComment(id))}</p><div class="profile-perf"><b>${perf.toFixed(1)}</b><span>PERF / 100<br>cette saison</span></div><div class="profile-quick"><div class="quick-stat"><b>${seasonStats.wins}</b><span>victoires</span></div><div class="quick-stat"><b>${seasonStats.winRate.toFixed(0)}%</b><span>de victoires</span></div><div class="quick-stat"><b>${seasonStats.perfects}</b><span>🎯 parfaits</span></div></div></div><div class="personal-columns">${personalCard('Cette saison',seasonStats)}${personalCard('Toute l’histoire',lifeStats)}</div>`);}
   function gamesHtml(){ const s=activeSeason(), games=[...s.games].sort((a,b)=>new Date(b.date)-new Date(a.date)), editable=s.status==='active'&&writerDb; return `<div class="section-head"><div><h3>Toutes les parties</h3><p class="sub">Chaque résultat est calculé automatiquement, sans ELO.</p></div>${s.status==='active'?'<button class="button" onclick="openGame()">+ Ajouter une partie</button>':''}</div>${games.length?`<div class="games">${games.map(g=>{const names=g.ranks.map(id=>s.players.find(p=>p.id===id)?.name||'Joueur').join(' · ');return `<article class="game"><div><b>${g.ranks.length} joueurs · ${dateText(g.date)}</b><span>🏆 ${esc(names)}</span></div><div class="toolbar"><div class="tag">PERF calculée</div>${g.perfectWin?'<div class="tag">🎯 Vol parfait +5</div>':''}${editable?`<button class="tool danger" onclick="deleteGame('${g.id}')">Supprimer</button>`:''}</div></article>`}).join('')}</div>`:`<div class="empty">Pas encore de partie. Ajoute la première quand vous aurez fini de jouer.</div>`}`; }
   function seasonsHtml(){ const editing=activeSeason().status==='active'; return `<div class="section-head"><div><h3>Les saisons</h3><p class="sub">Une saison terminée reste visible, sans pouvoir être modifiée.</p></div><button class="button alt" onclick="openSeason()">+ Nouvelle saison</button></div><div class="panel">${data.seasons.map(s=>`<div class="season-card"><div><b>${esc(s.name)} ${s.status==='active'?'· en cours':'· archivée'}</b><span>${s.games.length} parties · ${s.players.length} joueurs</span></div><div class="toolbar">${s.id!==activeSeasonId?`<button class="tool" onclick="selectSeason('${s.id}')">Voir</button>`:''}${s.status==='active'?`<button class="tool danger" onclick="archiveSeason('${s.id}')">Clôturer</button>`:''}</div></div>`).join('')}</div>${editing?`<div class="section-head"><div><h3>Les joueurs</h3><p class="sub">Ajoute une personne avant ou après une soirée de jeu.</p></div><button class="button" onclick="openPlayer()">+ Ajouter un joueur</button></div>`:''}<div class="section-head"><div><h3>Importation de l’ancienne sauvegarde</h3><p class="sub">Elle transforme tes anciennes parties en PERF. Les nombres ELO sont ignorés.</p></div></div>${editing?`<div class="panel"><input type="file" id="legacyFile" accept="application/json"><p class="sub">Choisis le fichier <b>perudo_master_backup…json</b> que tu m’as donné.</p><button class="button" onclick="importLegacy()">Importer dans cette saison</button></div>`:''}`; }
   function render(){ const s=activeSeason(); $('#seasonName').textContent=s.name; $('#app').innerHTML=view==='rank'?rankingHtml():view==='games'?gamesHtml():view==='stats'?statsHtml():seasonsHtml(); document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view)); renderAuth(); }
