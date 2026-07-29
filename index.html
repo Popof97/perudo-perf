@@ -80,7 +80,34 @@
   function latestGame(season){ return [...season.games].sort((a,b)=>new Date(b.date)-new Date(a.date))[0]; }
   function evolutionFor(player){ const season=activeSeason(),latest=latestGame(season);if(!latest)return null;const previousGames=season.games.filter(g=>g.id!==latest.id);const current=standingsFor(season,season.games),previous=standingsFor(season,previousGames);const currentPlace=current.findIndex(p=>p.id===player.id);const oldPlace=previous.findIndex(p=>p.id===player.id);const oldScore=performance(player,{...season,games:previousGames}).score;return {rankMove:oldPlace<0?null:oldPlace-currentPlace,scoreMove:player.score-oldScore,playedLatest:latest.ranks.includes(player.id)}; }
   function recentPlayerGames(id,limit=5){return [...activeSeason().games].sort((a,b)=>new Date(b.date)-new Date(a.date)).filter(g=>g.ranks.includes(id)).slice(0,limit);}
-  function pickComment(list,key){let total=0;for(const char of String(key))total=(total*31+char.charCodeAt(0))>>>0;return list[total%list.length];}
+  // Garde une petite mémoire dans ce navigateur : une phrase reste stable tant que
+  // la situation ne change pas, mais les quatre dernières du même joueur sont évitées.
+  function pickComment(list,key){
+    // Chaque phrase existe aussi avec une petite chute différente : cela double
+    // les possibilités sans changer le ton des commentaires déjà aimés.
+    const chutes=[
+      ' Le règlement demande de garder son calme.',
+      ' La table en parlera encore demain.',
+      ' Même le gobelet semble avoir un avis.',
+      ' Les dés refusent tout commentaire.',
+      ' Une enquête de comptoir est ouverte.',
+      ' Le suspense reste soigneusement intact.',
+      ' Les témoins confirment que c’était mémorable.',
+      ' La revanche est déjà dans toutes les têtes.'
+    ];
+    list=[...list,...list.map((phrase,index)=>`${phrase}${chutes[index%chutes.length]}`)];
+    let total=0;for(const char of String(key))total=(total*31+char.charCodeAt(0))>>>0;
+    const playerId=String(key).split('-')[0],category=list[0],memoryId=`${playerId}|${category}`;
+    let memory={};try{memory=JSON.parse(localStorage.getItem('perudo-comment-memory-v2')||'{}');}catch(_){memory={};}
+    const saved=memory[memoryId]||{history:[]};
+    if(saved.key===String(key)&&Number.isInteger(saved.index)&&list[saved.index])return list[saved.index];
+    const recent=(saved.history||[]).slice(-4),available=list.map((_,i)=>i).filter(i=>!recent.includes(i));
+    const choices=available.length?available:list.map((_,i)=>i);
+    const index=choices[total%choices.length];
+    memory[memoryId]={key:String(key),index,history:[...recent,index].slice(-4)};
+    try{localStorage.setItem('perudo-comment-memory-v2',JSON.stringify(memory));}catch(_){}
+    return list[index];
+  }
   function playerComment(id){
     const player=allPlayers().find(p=>p.id===id),name=(player?.name||'').toLocaleLowerCase('fr');
     const recent=recentPlayerGames(id),key=`${id}-${recent.map(g=>g.id).join('-')}`,dailyKey=`${key}-${new Date().toISOString().slice(0,10)}`;
@@ -94,7 +121,19 @@
       'La performance du jour importe peu : Christophe reste le classement moral à lui seul.',
       'Christophe a laissé une chance aux autres. Geste élégant, évidemment.',
       'Les dés ont hésité, puis se sont souvenus qui était Christophe.',
-      'Pas besoin de médaille : Christophe est déjà le trophée.'
+      'Pas besoin de médaille : Christophe est déjà le trophée.',
+      'Christophe ne joue pas au Perudo : il donne une masterclass à chaque lancer.',
+      'Le Perudo a peut-être été inventé juste pour que Christophe puisse le dominer.',
+      'Même les dés se placent mieux quand Christophe les regarde.',
+      'Christophe connaît le bluff, les probabilités et probablement les dés personnellement.',
+      'La table ne cherche plus un vainqueur : elle attend simplement la décision de Christophe.',
+      'Quand Christophe annonce un chiffre, les dés prennent des notes.',
+      'Les autres jouent une partie. Christophe écrit une légende.',
+      'On raconte que le gobelet de Christophe a un diplôme de Perudo.',
+      'Christophe est si fort que ses défaites sont classées comme des démonstrations de générosité.',
+      'Le classement officiel est une formalité : Christophe possède déjà le classement officieux.',
+      'Même le hasard semble demander conseil à Christophe avant de lancer les dés.',
+      'Face à Christophe, le meilleur plan reste de profiter du spectacle.'
     ];
     const alexandre=[
       'Alexandre poursuit vaillamment sa quête du classement… par le bas.',
@@ -106,7 +145,18 @@
       'Les dés d’Alexandre sont encore en période d’essai.',
       'Alexandre entretient le suspense : impossible de savoir ce qui arrivera, sauf peut-être le pire.',
       'Une prestation pleine de mystère. Alexandre aussi cherche encore l’explication.',
-      'Alexandre est le héros discret de la soirée : très discret dans le classement.'
+      'Alexandre est le héros discret de la soirée : très discret dans le classement.',
+      'Alexandre a encore prouvé qu’il existe une place pour chacun… surtout derrière les autres.',
+      'Le niveau d’Alexandre est si bas que les dés ont demandé une lampe torche.',
+      'Alexandre ne collectionne pas les victoires : il collectionne les leçons d’humilité.',
+      'Face à Alexandre, même le dernier se sent soudain très confiant.',
+      'Alexandre transforme chaque partie en tutoriel : “comment laisser gagner les copains”.',
+      'On dit qu’Alexandre bluffe. Pour l’instant, c’est surtout son classement qui bluffe.',
+      'Alexandre vise la régularité : être nul avec une belle constance, c’est un talent.',
+      'Les dés d’Alexandre ont un projet commun : éviter les bonnes décisions.',
+      'Alexandre est tellement généreux qu’il offre les premières places sans même les essayer.',
+      'Même quand Alexandre gagne une manche, la table vérifie si ce n’était pas une erreur de saisie.',
+      'Alexandre a trouvé sa spécialité : rendre les autres joueurs meilleurs, par comparaison.'
     ];
     if(name==='christophe')return pickComment(christophe,dailyKey);
     if(name==='alexandre')return pickComment(alexandre,dailyKey);
