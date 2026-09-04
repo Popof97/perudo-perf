@@ -121,12 +121,12 @@
     const recent=recentPlayerGames(id),key=`${id}-${recent.map(g=>g.id).join('-')}`,dailyKey=`${key}-${new Date().toISOString().slice(0,10)}`;
     const christophe=[
       'Christophe reste le patron : les dés n’ont pas encore reçu le mémo.',
-      'Même sans victoire, Christophe joue manifestement à un niveau conceptuel.',
+      'Quand Christophe perd, le gagnant lui demande quand même une photo.',
       'Christophe ne perd pas : il laisse les autres raconter leur exploit.',
       'La table confirme que Christophe est toujours la référence officielle.',
-      'Un résultat discret, mais Christophe garde la main sur la légende.',
-      'Christophe expérimente des stratégies que les mortels ne comprennent pas encore.',
-      'La performance du jour importe peu : Christophe reste le classement moral à lui seul.',
+      'Christophe peut finir dernier : au débrief, tout le monde attend quand même son avis.',
+      'Christophe laisse parfois gagner les autres. Sinon, qui reviendrait la semaine prochaine ?',
+      'Même quand Christophe perd, c’est lui qui signe les autographes.',
       'Christophe a laissé une chance aux autres. Geste élégant, évidemment.',
       'Les dés ont hésité, puis se sont souvenus qui était Christophe.',
       'Pas besoin de médaille : Christophe est déjà le trophée.',
@@ -153,14 +153,14 @@
     ];
     const alexandre=[
       'Alexandre poursuit vaillamment sa quête du classement… par le bas.',
-      'Alexandre travaille la régularité, dans une direction très personnelle.',
+      'Alexandre a une bonne lecture du jeu. Il tient juste le livre à l’envers.',
       'Une performance qui prouve qu’Alexandre n’a peur d’aucun défi, surtout du dernier.',
       'Alexandre laisse généreusement les sommets aux autres joueurs.',
       'Le gobelet d’Alexandre a demandé un débriefing après cette soirée.',
       'Alexandre joue un Perudo très audacieux : personne ne sait où cela mène.',
       'Les dés d’Alexandre sont encore en période d’essai.',
       'Alexandre entretient le suspense : impossible de savoir ce qui arrivera, sauf peut-être le pire.',
-      'Une prestation pleine de mystère. Alexandre aussi cherche encore l’explication.',
+      'Alexandre dit « j’ai une stratégie ». C’est généralement son bluff le plus convaincant.',
       'Alexandre est le héros discret de la soirée : très discret dans le classement.',
       'Alexandre a encore prouvé qu’il existe une place pour chacun… surtout derrière les autres.',
       'Le niveau d’Alexandre est si bas que les dés ont demandé une lampe torche.',
@@ -179,7 +179,7 @@
       'Quand Alexandre gagne, les probabilités déposent une réclamation.',
       'Alexandre annonce ses bluffs avec la discrétion d’un camion qui recule.',
       'Alexandre a consulté un coach. Le coach lui a conseillé de tenir les scores.',
-      'Alexandre voulait mettre du beurre dans les épinards. Il a mis les dés dans le beurre.',
+      'Alexandre bluffe comme il beurre ses tartines : il en met tellement que ça finit par se voir.',
       'Même sur une tartine, le bluff d’Alexandre ne passe pas. Trop de margarine, pas assez de talent.'
     ];
     if(name==='christophe')return pickComment(christophe,dailyKey);
@@ -246,7 +246,7 @@
       'Doublé gagnant. Le sourire devient difficile à cacher.',
       'Deux tables, deux victoires : quelqu’un se sent pousser des ailes.',
       'La série démarre. Les autres ont été prévenus.',
-      'Deux succès d’affilée : le bluff est en pleine forme.',
+      'Deux victoires et déjà « moi, ce que je vous conseille… ». Ça va être une longue soirée.',
       'Le gobelet est chaud. Vraiment chaud.',
       'Deux victoires de suite, et déjà des regards suspects autour de la table.',
       'Une belle série : les dés ont pris un abonnement.',
@@ -276,7 +276,7 @@
       'Un coup roi, un coup dernier. La montagne russe est ouverte.',
       'La régularité ? Pas vraiment. Le spectacle ? Absolument.',
       'Le classement fait des loopings dès que ce joueur s’assoit.',
-      'Une forme en zigzag, mais quel beau zigzag.',
+      'Après une victoire : « c’est la stratégie ». Après une dernière place : « c’est les dés ».',
       'Les dés alternent entre standing ovation et fou rire.',
       'Le yoyo est officiellement devenu une discipline de haut niveau.',
       'Une partie en limousine, la suivante dans le coffre : quel sens du voyage.',
@@ -290,7 +290,7 @@
       'Premier aujourd’hui, donc forcément très calme et très humble.',
       'La dernière partie a trouvé son patron.',
       'Victoire au compteur. Les excuses adverses sont en préparation.',
-      'Un succès qui donne envie de rejouer tout de suite.',
+      'Vient de gagner : propose soudain qu’on arrête là et qu’on garde ce classement.',
       'La table s’incline, les dés applaudissent discrètement.',
       'Une victoire propre. Enfin, aussi propre que le Perudo le permet.',
       'A remporté la partie et le droit de raconter une version beaucoup trop longue de la partie.',
@@ -300,11 +300,11 @@
     ],key);
     if(last(latest))return pickComment([
       'Dernière partie difficile… mais les dés ont une mémoire courte.',
-      'La soirée n’a pas choisi son camp, cette fois.',
+      'Dernier : vient de découvrir que « je le sentais bien » ne compte pas comme stratégie.',
       'Dernier, mais avec une excellente histoire à raconter.',
       'Un résultat à oublier vite. Heureusement, la revanche arrive toujours.',
       'Les dés ont été formels : pas aujourd’hui.',
-      'Fin de tableau, début d’une future légende. Peut-être.',
+      'Dernier, mais imbattable au débrief : avec les dés des autres, aurait évidemment gagné.',
       'Une manche rude, mais le gobelet n’a pas dit son dernier mot.',
       'Dernier pour l’instant : la remontada n’attend que son heure.',
       'Le plan était parfait jusqu’au moment où les autres ont commencé à jouer.',
@@ -329,7 +329,7 @@
     if(recent.length>=3&&topHalf>=3)return pickComment([
       'Une régularité suspecte. Les dés livrent peut-être des indices.',
       'Toujours bien placé : la table commence à prendre cela au sérieux.',
-      'La forme est solide, sans avoir besoin de faire de bruit.',
+      'Accumule les bonnes places en disant « j’ai eu de la chance ». Oui, oui. Chaque fois.',
       'Un vrai métronome du Perudo. Mais avec un gobelet.',
       'Les bonnes places s’accumulent. La confiance aussi.',
       'Régulier, discret, dangereux : le pire mélange possible.',
@@ -341,12 +341,12 @@
       'Une régularité de beurre demi-sel : jamais fade, toujours à sa place.'
     ],key);
     return pickComment([
-      'Dans le rythme, sans faire trop de bruit. Méfiance.',
+      'Ni premier ni dernier : peut critiquer les deux avec un confort remarquable.',
       'Une partie correcte, et probablement déjà un nouveau plan en tête.',
       'Ni héros ni victime : juste assez dangereux pour la prochaine manche.',
       'Le classement bouge doucement, mais les dés peuvent tout changer.',
-      'Une soirée de travail propre. Le bluff reste affûté.',
-      'Position stable, regard suspect : la suite promet.',
+      'Une place au milieu. Attend de voir qui gagne pour dire « je le savais ».',
+      'Assez loin du dernier pour se moquer, assez loin du premier pour parler de chance.',
       'Pas de drame, pas de triomphe : le Perudo dans toute sa finesse.',
       'La partie suivante décidera si c’était un échauffement ou un avertissement.',
       'A quitté la table avec quelques points et une théorie très précise sur la chance des autres.',
