@@ -101,31 +101,19 @@
   function evolutionFor(player){ const season=activeSeason(),latest=latestGame(season);if(!latest)return null;const previousGames=season.games.filter(g=>g.id!==latest.id);const current=standingsFor(season,season.games),previous=standingsFor(season,previousGames);const currentPlace=current.findIndex(p=>p.id===player.id);const oldPlace=previous.findIndex(p=>p.id===player.id);const oldScore=performance(player,{...season,games:previousGames}).score;return {rankMove:oldPlace<0?null:oldPlace-currentPlace,scoreMove:player.score-oldScore,playedLatest:latest.ranks.includes(player.id)}; }
   function recentPlayerGames(id,limit=5){return [...activeSeason().games].sort((a,b)=>new Date(b.date)-new Date(a.date)).filter(g=>g.ranks.includes(id)).slice(0,limit);}
   // Garde une petite mémoire dans ce navigateur : une phrase reste stable tant que
-  // la situation ne change pas, mais les quatre dernières du même joueur sont évitées.
+  // la situation ne change pas, mais les huit dernières de la catégorie sont évitées.
   function pickComment(list,key){
-    // Chaque phrase existe aussi avec une petite chute différente : cela double
-    // les possibilités sans changer le ton des commentaires déjà aimés.
-    const chutes=[
-      ' Le règlement demande de garder son calme.',
-      ' La table en parlera encore demain.',
-      ' Même le gobelet semble avoir un avis.',
-      ' Les dés refusent tout commentaire.',
-      ' Une enquête de comptoir est ouverte.',
-      ' Le suspense reste soigneusement intact.',
-      ' Les témoins confirment que c’était mémorable.',
-      ' La revanche est déjà dans toutes les têtes.'
-    ];
-    list=[...list,...list.map((phrase,index)=>`${phrase}${chutes[index%chutes.length]}`)];
+    // Des phrases complètes : pas de doublons déguisés par une chute ajoutée.
     let total=0;for(const char of String(key))total=(total*31+char.charCodeAt(0))>>>0;
     const playerId=String(key).split('-')[0],category=list[0],memoryId=`${playerId}|${category}`;
-    let memory={};try{memory=JSON.parse(localStorage.getItem('perudo-comment-memory-v2')||'{}');}catch(_){memory={};}
+    let memory={};try{memory=JSON.parse(localStorage.getItem('perudo-comment-memory-v3')||'{}');}catch(_){memory={};}
     const saved=memory[memoryId]||{history:[]};
     if(saved.key===String(key)&&Number.isInteger(saved.index)&&list[saved.index])return list[saved.index];
-    const recent=(saved.history||[]).slice(-4),available=list.map((_,i)=>i).filter(i=>!recent.includes(i));
+    const recent=(saved.history||[]).slice(-Math.min(8,list.length-1)),available=list.map((_,i)=>i).filter(i=>!recent.includes(i));
     const choices=available.length?available:list.map((_,i)=>i);
     const index=choices[total%choices.length];
-    memory[memoryId]={key:String(key),index,history:[...recent,index].slice(-4)};
-    try{localStorage.setItem('perudo-comment-memory-v2',JSON.stringify(memory));}catch(_){}
+    memory[memoryId]={key:String(key),index,history:[...recent,index].slice(-8)};
+    try{localStorage.setItem('perudo-comment-memory-v3',JSON.stringify(memory));}catch(_){}
     return list[index];
   }
   function playerComment(id){
@@ -153,7 +141,15 @@
       'Christophe est si fort que ses défaites sont classées comme des démonstrations de générosité.',
       'Le classement officiel est une formalité : Christophe possède déjà le classement officieux.',
       'Même le hasard semble demander conseil à Christophe avant de lancer les dés.',
-      'Face à Christophe, le meilleur plan reste de profiter du spectacle.'
+      'Face à Christophe, le meilleur plan reste de profiter du spectacle.',
+      'Christophe ne secoue pas son gobelet : il remet les probabilités dans le bon ordre.',
+      'Si Christophe finit derrière, c’est pour surveiller son royaume depuis les remparts.',
+      'Christophe a demandé un six. Le dé qui n’avait que cinq points est parti se former.',
+      'Le hasard porte un costume, mais tout le monde sait qu’il travaille pour Christophe.',
+      'Christophe pourrait bluffer avec un gobelet transparent. Les autres douteraient quand même.',
+      'La couronne de Christophe passe au lave-vaisselle. Elle sert tellement souvent.',
+      'Christophe, c’est le beurre AOP du Perudo : les autres sont encore au stade de la margarine.',
+      'Même quand ça tourne mal, Christophe transforme la partie en beurre noisette : du grand art.'
     ];
     const alexandre=[
       'Alexandre poursuit vaillamment sa quête du classement… par le bas.',
@@ -176,7 +172,15 @@
       'Les dés d’Alexandre ont un projet commun : éviter les bonnes décisions.',
       'Alexandre est tellement généreux qu’il offre les premières places sans même les essayer.',
       'Même quand Alexandre gagne une manche, la table vérifie si ce n’était pas une erreur de saisie.',
-      'Alexandre a trouvé sa spécialité : rendre les autres joueurs meilleurs, par comparaison.'
+      'Alexandre a trouvé sa spécialité : rendre les autres joueurs meilleurs, par comparaison.',
+      'Alexandre a un plan en trois étapes. La première consiste à oublier les deux autres.',
+      'Le gobelet d’Alexandre est retourné tout seul : il ne voulait pas voir la suite.',
+      'Alexandre pourrait perdre une partie de démonstration contre la notice.',
+      'Quand Alexandre gagne, les probabilités déposent une réclamation.',
+      'Alexandre annonce ses bluffs avec la discrétion d’un camion qui recule.',
+      'Alexandre a consulté un coach. Le coach lui a conseillé de tenir les scores.',
+      'Alexandre voulait mettre du beurre dans les épinards. Il a mis les dés dans le beurre.',
+      'Même sur une tartine, le bluff d’Alexandre ne passe pas. Trop de margarine, pas assez de talent.'
     ];
     if(name==='christophe')return pickComment(christophe,dailyKey);
     if(name==='alexandre')return pickComment(alexandre,dailyKey);
@@ -189,7 +193,11 @@
       'Absent au dernier rendez-vous : les dés attendent leur revanche.',
       'A laissé les autres s’amuser. Ou se débrouiller. La nuance est importante.',
       'Pas vu à la dernière partie : le classement garde quand même un œil sur lui.',
-      'En pause stratégique pendant que la table faisait du bruit.'
+      'En pause stratégique pendant que la table faisait du bruit.',
+      'Chaise vide, réputation intacte : une soirée remarquablement bien négociée.',
+      'A posé un RTT au service des probabilités. Aucun dé n’a signé le formulaire.',
+      'Son gobelet a servi de pot à crayons pendant que les autres réglaient leurs comptes.',
+      'Absent : probablement en train de négocier un contrat de sponsoring avec une beurrerie.'
     ],dailyKey);
     if(!recent.length)return pickComment([
       'Encore caché derrière son gobelet, mais prêt à surprendre la table.',
@@ -197,7 +205,11 @@
       'Le calme avant le bluff. La table ferait bien de se méfier.',
       'Aucune partie récente : les dés attendent leur heure.',
       'Profil discret, potentiel de chaos encore inconnu.',
-      'En embuscade. Personne ne sait si c’est prudent ou inquiétant.'
+      'En embuscade. Personne ne sait si c’est prudent ou inquiétant.',
+      'Le gobelet est encore sous garantie. Le talent, lui, attend son premier contrôle technique.',
+      'Pour le moment, le seul bluff consiste à faire croire que tout est prêt.',
+      'La bande attend le premier lancer comme un colis sans numéro de suivi.',
+      'Les dés sont neufs, le beurre est frais : il ne manque que la première tartine.'
     ],key);
     const position=g=>g.ranks.indexOf(id),winner=g=>position(g)===0,last=g=>position(g)===g.ranks.length-1;
     const latest=recent[0];let winStreak=0,lastStreak=0;for(const game of recent){if(winner(game))winStreak++;else break;}for(const game of recent){if(last(game))lastStreak++;else break;}
@@ -209,7 +221,11 @@
       'Les cinq dés sont là. Les autres joueurs cherchent encore leurs excuses.',
       'Vol parfait : ce n’est plus une victoire, c’est une déclaration.',
       'Le gobelet a livré une démonstration de force assez peu polie.',
-      'Cinq dés conservés : la soirée vient de changer de propriétaire.'
+      'Cinq dés conservés : la soirée vient de changer de propriétaire.',
+      'Cinq dés au départ, cinq à l’arrivée. Même le contrôle technique n’a rien trouvé.',
+      'Vol parfait : les adversaires étaient inclus dans le prix de la démonstration.',
+      'Personne n’a touché aux cinq dés. On aurait dit les chocolats réservés aux invités.',
+      'Cinq dés intacts : la victoire est passée comme un couteau chaud dans le beurre.'
     ],key);
     if(winStreak>=3)return pickComment([
       `${winStreak} victoires de suite… on commence à inspecter les dés.`,
@@ -219,7 +235,11 @@
       `Encore une victoire. La légende prend un peu trop ses aises.`,
       `${winStreak} victoires : même le gobelet a l’air impressionné.`,
       `Une série qui dure. Les dés sont visiblement de bonne compagnie.`,
-      `Trois victoires ou plus : le mode boss final est activé.`
+      `Trois victoires ou plus : le mode boss final est activé.`,
+      'À force de gagner, va bientôt recevoir les adversaires uniquement sur rendez-vous.',
+      'Le podium commence à demander un loyer : quelqu’un s’y est installé.',
+      'Les victoires arrivent si vite que le service comptabilité a demandé du renfort.',
+      'En pleine série : les autres fondent comme une motte de beurre sur une crêpière.'
     ],key);
     if(winStreak===2)return pickComment([
       'Deux victoires de suite : la confiance commence à faire du bruit.',
@@ -229,7 +249,11 @@
       'Deux succès d’affilée : le bluff est en pleine forme.',
       'Le gobelet est chaud. Vraiment chaud.',
       'Deux victoires de suite, et déjà des regards suspects autour de la table.',
-      'Une belle série : les dés ont pris un abonnement.'
+      'Une belle série : les dés ont pris un abonnement.',
+      'Deux victoires : vient de passer de « j’ai eu du bol » à « je donne des cours ».',
+      'Le doublé est là. Le discours de modestie a été annulé faute de participants.',
+      'Deux succès, et le gobelet cherche déjà un agent pour gérer sa carrière.',
+      'Deux victoires : le beurre et l’argent du beurre. La crémière garde ses distances.'
     ],key);
     if(lastStreak>=2)return pickComment([
       'Deux dernières places ou plus… le gobelet demande une pause.',
@@ -239,7 +263,11 @@
       'Une régularité admirable, même si personne ne l’avait demandée.',
       'Le tapis connaît bien ce joueur en ce moment.',
       'Deux fins de tableau : la remontée n’en sera que plus belle.',
-      'Le classement du bas est parfaitement maîtrisé.'
+      'Le classement du bas est parfaitement maîtrisé.',
+      'À force de visiter la cave du classement, va finir par y installer un canapé.',
+      'Les défaites se suivent. Le dossier « circonstances exceptionnelles » fait déjà 400 pages.',
+      'Le GPS indique encore « faites demi-tour ». Le gobelet refuse de recalculer.',
+      'La série tourne au beurre noir. Heureusement, les excuses restent faites maison.'
     ],key);
     const hasWin=recent.some(winner),hasLast=recent.some(last);
     if(recent.length>=3&&hasWin&&hasLast)return pickComment([
@@ -250,7 +278,11 @@
       'Le classement fait des loopings dès que ce joueur s’assoit.',
       'Une forme en zigzag, mais quel beau zigzag.',
       'Les dés alternent entre standing ovation et fou rire.',
-      'Le yoyo est officiellement devenu une discipline de haut niveau.'
+      'Le yoyo est officiellement devenu une discipline de haut niveau.',
+      'Une partie en limousine, la suivante dans le coffre : quel sens du voyage.',
+      'Le graphique des résultats ressemble à un électrocardiogramme après trois cafés.',
+      'Le classement prend les escaliers quatre à quatre, dans les deux sens.',
+      'Un coup beurre de baratte, un coup margarine premier prix : dégustation à l’aveugle.'
     ],key);
     if(winner(latest))return pickComment([
       'La dernière table lui appartient. Les autres prennent des notes.',
@@ -260,7 +292,11 @@
       'Victoire au compteur. Les excuses adverses sont en préparation.',
       'Un succès qui donne envie de rejouer tout de suite.',
       'La table s’incline, les dés applaudissent discrètement.',
-      'Une victoire propre. Enfin, aussi propre que le Perudo le permet.'
+      'Une victoire propre. Enfin, aussi propre que le Perudo le permet.',
+      'A remporté la partie et le droit de raconter une version beaucoup trop longue de la partie.',
+      'Le bluff est passé. Les adversaires cherchent encore où cliquer pour se désabonner.',
+      'La victoire était belle. L’imitation du joueur humble reste à travailler.',
+      'A tartiné la table d’un bluff pur beurre. Tout le monde en a repris.'
     ],key);
     if(last(latest))return pickComment([
       'Dernière partie difficile… mais les dés ont une mémoire courte.',
@@ -270,7 +306,11 @@
       'Les dés ont été formels : pas aujourd’hui.',
       'Fin de tableau, début d’une future légende. Peut-être.',
       'Une manche rude, mais le gobelet n’a pas dit son dernier mot.',
-      'Dernier pour l’instant : la remontada n’attend que son heure.'
+      'Dernier pour l’instant : la remontada n’attend que son heure.',
+      'Le plan était parfait jusqu’au moment où les autres ont commencé à jouer.',
+      'Sortie express : même le café n’avait pas eu le temps de refroidir.',
+      'Avait lu dans les pensées de l’adversaire. Malheureusement, c’était la liste des courses.',
+      'Le bluff a glissé comme une tartine beurrée. Évidemment, du mauvais côté.'
     ],key);
     if(position(latest)===1)return pickComment([
       'Toujours à deux doigts du trône. Ça sent la revanche.',
@@ -279,7 +319,11 @@
       'Presque premier. Le mot presque peut être très long.',
       'Belle deuxième place : la couronne n’était vraiment pas loin.',
       'Une place d’honneur, avec les crocs bien sortis.',
-      'Le podium est validé. La marche d’au-dessus est dans le viseur.'
+      'Le podium est validé. La marche d’au-dessus est dans le viseur.',
+      'Deuxième : a préparé le discours de victoire pour finalement tenir le micro.',
+      'La couronne était dans le panier. Quelqu’un a validé la commande avant.',
+      'Si près du titre que le vainqueur devrait payer un supplément voisinage.',
+      'A fait tout le travail de barattage. Un autre est reparti avec le beurre.'
     ],key);
     const topHalf=recent.filter(g=>position(g)<g.ranks.length/2).length;
     if(recent.length>=3&&topHalf>=3)return pickComment([
@@ -290,7 +334,11 @@
       'Les bonnes places s’accumulent. La confiance aussi.',
       'Régulier, discret, dangereux : le pire mélange possible.',
       'La constance fait son œuvre. Les autres le savent maintenant.',
-      'Une forme de champion tranquille, très tranquillement inquiétante.'
+      'Une forme de champion tranquille, très tranquillement inquiétante.',
+      'Livre les bonnes places comme le facteur : régulièrement, avec un air innocent.',
+      'Ne fait pas de bruit, mais le classement a commencé à fermer sa porte à clé.',
+      'Les résultats sont rangés au cordeau. Même le tableur est un peu jaloux.',
+      'Une régularité de beurre demi-sel : jamais fade, toujours à sa place.'
     ],key);
     return pickComment([
       'Dans le rythme, sans faire trop de bruit. Méfiance.',
@@ -300,7 +348,11 @@
       'Une soirée de travail propre. Le bluff reste affûté.',
       'Position stable, regard suspect : la suite promet.',
       'Pas de drame, pas de triomphe : le Perudo dans toute sa finesse.',
-      'La partie suivante décidera si c’était un échauffement ou un avertissement.'
+      'La partie suivante décidera si c’était un échauffement ou un avertissement.',
+      'A quitté la table avec quelques points et une théorie très précise sur la chance des autres.',
+      'Le bluff mijote encore. Quelqu’un devrait vérifier si le feu est allumé.',
+      'Une prestation qui mérite un « on en reparle » dans le compte rendu officiel.',
+      'Ni beurre doux ni beurre salé : pour l’instant, surtout du beurre de suspense.'
     ],key);
   }
   function rankAnimal(place){const animals=['🦁','🐺','🐯','🦅','🦊','🐻','🦡','🐿️','🐇','🐭','🐣','🦋'];return typeof place==='number'?animals[Math.min(place-1,animals.length-1)]:'🎲';}
